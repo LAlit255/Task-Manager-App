@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h2>Your Tasks</h2>
+  <a href="{% url 'task_create' %}" class="btn btn-success mb-2">Create New Task</a>
+  <a href="{% url 'login' %}" class="btn btn-success mb-2">Logout</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        <tr>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.created_at }}</td>
+          <td>{{ task.updated_at }}</td>
+          <td>
+            <a href="{% url 'task_update' task.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
