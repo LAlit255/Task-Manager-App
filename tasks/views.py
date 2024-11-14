@@ -42,7 +42,7 @@ def user_logout(request):
     return redirect('login')
 
 
-@login_required
+@login_required(login_url='/login/')
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)
     return render(request, 'tasks/task_list.html', {'tasks': tasks})
